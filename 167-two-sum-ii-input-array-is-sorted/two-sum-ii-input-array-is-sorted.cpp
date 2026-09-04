@@ -1,32 +1,26 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
+        int left = 0;
+        int right = numbers.size() - 1 ; 
+        while(left <= right){
+            int sum = numbers[left] + numbers[right];
 
-        for(int i = 0; i < numbers.size(); i++) {
+            if(sum == target){
+                return {left + 1, right + 1};
 
-            int comp = target - numbers[i];
+            }
 
-            int left = i + 1;
-            int right = numbers.size() - 1;
+            else if(sum < target){
+                left++;
+            }
 
-            while(left <= right) {
-
-                int mid = left + (right - left) / 2;
-
-                if(comp == numbers[mid]) {
-                    return {i + 1, mid + 1};
-                }
-
-                else if(comp < numbers[mid]) {
-                    right = mid - 1;
-                }
-
-                else {
-                    left = mid + 1;
-                }
+            else{
+                right--;
             }
         }
 
         return {};
+        
     }
 };
